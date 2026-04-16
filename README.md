@@ -1,4 +1,4 @@
-# Release Manager -- DevOps Pilot Plugin
+# Release Manager -- Symphonee Plugin
 
 Track Azure DevOps build/release pipelines, generate release notes from work items and commits, and monitor pipeline health.
 
@@ -15,7 +15,7 @@ Track Azure DevOps build/release pipelines, generate release notes from work ite
 
 ## Requirements
 
-- DevOps Pilot with Azure DevOps configured (org, project, PAT)
+- Symphonee with Azure DevOps configured (org, project, PAT)
 - ADO PAT must have **Build (read)** and **Work Items (read)** permissions
 
 ## Settings
@@ -27,7 +27,7 @@ Track Azure DevOps build/release pipelines, generate release notes from work ite
 
 ## Installation
 
-Copy this folder into `dashboard/plugins/` in your DevOps Pilot installation, or use the plugin registry.
+Copy this folder into `dashboard/plugins/` in your Symphonee installation, or use the plugin registry.
 
 ## API Routes
 

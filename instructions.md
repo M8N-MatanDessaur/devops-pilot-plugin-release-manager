@@ -110,7 +110,7 @@ curl -s -X POST http://127.0.0.1:3800/api/plugins/release-manager/changelog \
 
 **1. Pipeline status check**: Fetch `/pipelines` to see all pipelines and their latest run status. Use `/pipelines/{id}/health` for detailed health metrics.
 
-**2. Generate release notes**: First list runs with `/pipelines/{id}/runs`, pick a "from" run and a "to" run, then POST to `/generate-notes`. Save the markdown as a DevOps Pilot note.
+**2. Generate release notes**: First list runs with `/pipelines/{id}/runs`, pick a "from" run and a "to" run, then POST to `/generate-notes`. Save the markdown as a Symphonee note.
 
 **3. Pre-release checklist**: Check `/unreleased` to see what resolved work items have not yet been deployed. Review and confirm before triggering a release.
 

@@ -50,7 +50,7 @@ function adoRequest(method, apiPath, config, body) {
 }
 
 // ---------------------------------------------------------------------------
-// DevOps Pilot internal API helper
+// Symphonee internal API helper
 // ---------------------------------------------------------------------------
 function localApi(apiPath) {
   return new Promise(function (resolve, reject) {
@@ -163,7 +163,7 @@ module.exports = function (ctx) {
     // -----------------------------------------------------------------------
     if (subpath === '/test' && method === 'GET') {
       if (!appCfg.AzureDevOpsPAT || !appCfg.AzureDevOpsOrg || !appCfg.AzureDevOpsProject) {
-        return json(res, { ok: false, error: 'Azure DevOps is not configured in DevOps Pilot settings.' });
+        return json(res, { ok: false, error: 'Azure DevOps is not configured in Symphonee settings.' });
       }
       try {
         var r = await adoRequest('GET', 'pipelines?$top=1', appCfg);
@@ -180,7 +180,7 @@ module.exports = function (ctx) {
     if (subpath === '/summary' && method === 'GET') {
       if (!appCfg.AzureDevOpsPAT) {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('Release Manager -- not configured. Set Azure DevOps PAT in DevOps Pilot settings.');
+        res.end('Release Manager -- not configured. Set Azure DevOps PAT in Symphonee settings.');
         return true;
       }
       try {
@@ -721,7 +721,7 @@ module.exports = function (ctx) {
           }
         }
 
-        // Use DevOps Pilot API to fetch resolved work items
+        // Use Symphonee API to fetch resolved work items
         var wiData = await localApi('/api/workitems?state=Resolved');
         var wiList = (wiData && wiData.value) || (Array.isArray(wiData) ? wiData : []);
 

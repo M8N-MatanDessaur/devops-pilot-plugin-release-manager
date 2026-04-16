@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Release Manager</title>
-<script src="/plugins/sdk/devops-pilot-sdk.js"></script>
+<script src="/plugins/sdk/symphonee-sdk.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -676,7 +676,7 @@
       'show-failures': 'Show me recent failed builds.\ncurl -s http://127.0.0.1:3800/api/plugins/release-manager/pipelines' + (pid ? '/' + pid + '/runs' : '') + '\n\nFind all failed runs, explain what went wrong based on the build data, and suggest fixes.',
       'unreleased-items': 'What work items are resolved but not yet released?\ncurl -s http://127.0.0.1:3800/api/plugins/release-manager/unreleased' + (pid ? '?pipelineId=' + pid : '') + '\n\nList all resolved work items that have not been included in a successful pipeline run yet.'
     };
-    DevOpsPilot.askAi(prompts[action] || action);
+    Symphonee.askAi(prompts[action] || action);
   }
 
   // ---- Detail tab switching ----
@@ -697,7 +697,7 @@
   }
 
   function viewWorkItem(id) {
-    DevOpsPilot.viewWorkItem(id);
+    Symphonee.viewWorkItem(id);
   }
 
   function viewCommit(hash, location) {
@@ -711,7 +711,7 @@
       return;
     }
     // Fallback: try local diff viewer with active repo
-    DevOpsPilot.getContext().then(function(ctx) {
+    Symphonee.getContext().then(function(ctx) {
       var repo = ctx ? ctx.activeRepo : '';
       fetch('/api/ui/view-commit-diff', {
         method: 'POST',
@@ -1165,7 +1165,7 @@
   }
 
   // ================================================================
-  // Message handler (from DevOps Pilot host)
+  // Message handler (from Symphonee host)
   // ================================================================
   window.addEventListener('message', function (evt) {
     var msg = evt.data;
@@ -1184,7 +1184,7 @@
   // ================================================================
   loadPipelines();
 
-  DevOpsPilot.on('tabActivated', function(data) {
+  Symphonee.on('tabActivated', function(data) {
     if (data && data.tab && data.tab.indexOf('release-manager') !== -1) {
       loadPipelines();
     }
